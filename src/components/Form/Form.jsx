@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { v4 as uuidv4 } from 'uuid'; // Імпортуйте функцію v4 з пакету uuid
+import { v4 as uuidv4 } from 'uuid'; 
 import FormCss from '../Form/FormCss.module.css';
 import { addContact } from 'store/contactSlice';
 
@@ -22,10 +22,9 @@ const Form = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    const id = uuidv4(); // Генеруємо новий ID
+    const id = uuidv4(); 
 
-    dispatch(addContact({ id, name, number })); // Передаємо ID разом з іншими даними контакту
-    setName('');
+    dispatch(addContact({ id, name, number })); 
     setNumber('');
   };
 
