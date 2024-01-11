@@ -6,7 +6,7 @@ import { addContact } from 'store/contactSlice';
 
 const Form = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector((state) => state.contacts?.data);
+  const contacts = useSelector((state) => state.contacts);
 
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
