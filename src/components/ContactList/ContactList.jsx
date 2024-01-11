@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import ContactListItem from '../ContactListItem/ContactListItem';
 
 const ContactList = ({ onDeleteContact }) => {
-  const contacts = useSelector((state) => state.contacts);
+  const contacts = useSelector((state) => state.contacts?.data);
   console.log(contacts);
 
   if (!contacts || !Array.isArray(contacts) || contacts.length === 0) {
