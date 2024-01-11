@@ -3,13 +3,17 @@ import { useDispatch } from 'react-redux';
 import ContactList from '../components/ContactList/ContactList';
 import Form from '../components/Form/Form';
 import Filter from '../components/Filter/Filter';
-import { addContact } from 'store/contactSlice';
-
+import { addContact, deleteContact } from 'store/contactSlice';
 
 const App = () => {
   const dispatch = useDispatch();
-  const handleAddContact = (name, number) => {
-    dispatch(addContact({ name, number }));
+
+  const handleAddContact = (contact) => {
+    dispatch(addContact(contact));
+  };
+
+  const handleDeleteContact = (id) => {
+    dispatch(deleteContact(id));
   };
 
   return (
@@ -18,7 +22,7 @@ const App = () => {
       <Form onAddContact={handleAddContact} />
       <h2>Contacts</h2>
       <Filter />
-      <ContactList />
+      <ContactList onDeleteContact={handleDeleteContact} />
     </div>
   );
 };
