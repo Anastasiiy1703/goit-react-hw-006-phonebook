@@ -10,7 +10,6 @@ const ContactListItem = ({ name, number, id }) => {
   const handleClick = () => {
     dispatch(deleteContact(id));
   };
-  console.log('ID:', id); 
   return (
     <li className={ContactListItemCss.item}>
       <p>{name}: {number}</p>

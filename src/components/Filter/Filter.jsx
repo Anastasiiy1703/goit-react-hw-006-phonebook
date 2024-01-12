@@ -4,10 +4,10 @@ import { setFilter } from 'store/filter';
 
 const Filter = () => {
   const dispatch = useDispatch();
-  const filter = useSelector((state) => state.filter);
+  const filter = useSelector((state) => state.filter.data);
 
   const handleFilterChange = (event) => {
-    dispatch(setFilter(event.target.value)); 
+    dispatch(setFilter(event.target.value));
   };
 
   return (
@@ -16,7 +16,7 @@ const Filter = () => {
       <input
         className={FilterCss.input}
         type="text"
-        value={filter} 
+        value={filter}
         onChange={handleFilterChange}
       />
     </label>

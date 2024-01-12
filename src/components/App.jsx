@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch} from 'react-redux';
 import ContactList from '../components/ContactList/ContactList';
 import Form from '../components/Form/Form';
 import Filter from '../components/Filter/Filter';
