@@ -1,14 +1,11 @@
 import { useDispatch, useSelector } from 'react-redux';
 import FilterCss from '../Filter/FilterCss.module.css';
 import { setFilter } from 'store/filter';
+import { getFilter } from 'store/selectors';
 
 const Filter = () => {
   const dispatch = useDispatch();
-  const filter = useSelector((state) => state.filter.data);
-
-  const handleFilterChange = (event) => {
-    dispatch(setFilter(event.target.value));
-  };
+  const filter = useSelector(getFilter);
 
   return (
     <label className={FilterCss.label}>
@@ -17,10 +14,16 @@ const Filter = () => {
         className={FilterCss.input}
         type="text"
         value={filter}
-        onChange={handleFilterChange}
+        onChange={e => {
+          dispatch(setFilter(e.target.value));
+        }}
       />
     </label>
   );
 };
 
 export default Filter;
+
+
+
+

@@ -1,15 +1,14 @@
-import React from 'react';
 import { useDispatch } from 'react-redux';
-import ContactListItemCss from './ContactListItemCss.module.css';
 import { deleteContact } from 'store/contactSlice';
+import ContactListItemCss from './ContactListItemCss.module.css';
 
-
-const ContactListItem = ({ name, number, id }) => {
+const ContactListItem = ({ id, name, number }) => {
   const dispatch = useDispatch();
 
   const handleClick = () => {
     dispatch(deleteContact(id));
   };
+  
   return (
     <li className={ContactListItemCss.item}>
       <p>{name}: {number}</p>
@@ -19,3 +18,8 @@ const ContactListItem = ({ name, number, id }) => {
 };
 
 export default ContactListItem;
+
+
+
+
+

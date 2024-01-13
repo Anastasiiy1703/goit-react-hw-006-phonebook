@@ -1,14 +1,33 @@
-import { useState } from 'react';
+import { nanoid } from 'nanoid';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { v4 as uuidv4 } from 'uuid';
-import FormCss from '../Form/FormCss.module.css';
+import { getContacts } from 'store/selectors';
 import { addContact } from 'store/contactSlice';
+import FormCss from '../Form/FormCss.module.css';
 
 const Form = () => {
-  const dispatch = useDispatch();
-  const contacts = useSelector((state) => state.contacts);
+ const dispatch = useDispatch();
+  const contacts = useSelector(getContacts);
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
+ 
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    if (
+      contacts.find(
+        (contact) => contact.name.toLowerCase() === name.toLowerCase()
+      ) === undefined
+    ) {
+      const item = { id: nanoid(), name, number };
+      dispatch(addContact(item));
+      setName('');
+      setNumber('');
+     
+    } else {
+      alert(`${name} is already in contacts.`);
+    }
+  };
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -18,24 +37,6 @@ const Form = () => {
       setNumber(value);
     }
   };
-
-  const handleSubmit = (event) => {
-  event.preventDefault();
-
-  const existingContactByName = contacts.data.find((contact) => contact.name === name);
-
-  if (existingContactByName) {
-    alert('Contact with the same name already exists.');
-    setName('');
-    setNumber('');
-  } else {
-    const id = uuidv4();
-
-    dispatch(addContact({ id, name, number }));
-    setName('');
-    setNumber('');
-  }
-};
 
   return (
     <form className={FormCss.form} onSubmit={handleSubmit}>
@@ -73,3 +74,9 @@ const Form = () => {
 };
 
 export default Form;
+
+
+
+
+
+
